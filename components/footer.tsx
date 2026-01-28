@@ -64,24 +64,46 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8">
           {/* Company Info - Größere Spalte */}
           <div className="lg:col-span-4">
-            <img
-              src="https://baumgaertner-kessler.de/c6698e15471de794b7b5aa26864d2c4d.png"
-              alt="Baumgärtner - Kessler Automobile"
-              className="h-14 w-auto mb-6 brightness-0 invert"
-            />
+            {/* Logo Block */}
+            <div className="mb-8">
+              <img
+                src="/logo-car-gold.png"
+                alt="BK Automobile"
+                className="h-12 w-auto object-contain mb-3"
+              />
+              <div className="flex flex-col leading-tight">
+                <span className="text-lg font-bold text-white tracking-tight">
+                  Baumgärtner – Kessler
+                </span>
+                <span className="text-xs font-semibold text-[#c9a227] uppercase tracking-[0.25em]">
+                  Automobile GmbH
+                </span>
+              </div>
+            </div>
+
             <p className="text-white/60 mb-6 leading-relaxed">
               Ihr Partner für hochwertige Gebrauchtwagen und Jahreswagen in Heilbronn.
               Persönliche Beratung, faire Preise und erstklassiger Service.
             </p>
+
             <div className="flex gap-3">
               <a
                 href="https://www.instagram.com/b_k_automobile/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center hover:bg-[#c9a227] transition-all hover:scale-105"
+                className="w-11 h-11 rounded-xl bg-white/10 flex items-center justify-center hover:bg-[#c9a227] transition-all hover:scale-105"
                 aria-label="Instagram"
               >
-                <Instagram size={22} />
+                <Instagram size={20} />
+              </a>
+              <a
+                href="https://wa.me/491722741991"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-11 h-11 rounded-xl bg-white/10 flex items-center justify-center hover:bg-[#25D366] transition-all hover:scale-105"
+                aria-label="WhatsApp"
+              >
+                <Phone size={20} />
               </a>
             </div>
           </div>

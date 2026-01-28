@@ -80,7 +80,7 @@ export default function Home() {
         <div
           className="absolute inset-0 z-0"
           style={{
-            backgroundImage: "url('https://baumgaertner-kessler.de/53a8d9188aad659ffb62f24ad1a9cd59.jpg')",
+            backgroundImage: "url('/hero-logo.png')",
             backgroundSize: "cover",
             backgroundPosition: "center",
           }}
@@ -247,9 +247,9 @@ export default function Home() {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
             {[
-              { img: "https://baumgaertner-kessler.de/bilder/Impressionen_2_861367.JPG", title: "Premium Limousine" },
-              { img: "https://baumgaertner-kessler.de/bilder/Impressionen3_861371.JPG", title: "Komfort SUV" },
-              { img: "https://baumgaertner-kessler.de/bilder/Impressionen_1_861372.JPG", title: "Sportlicher Kombi" },
+              { img: "https://i.pinimg.com/736x/20/a8/3b/20a83b5c2589cb9b7af59b3318b95966.jpg", title: "Premium Limousine" },
+              { img: "https://i.pinimg.com/736x/53/2e/8f/532e8ffe15aa4c61038e2f93dda4887b.jpg", title: "Komfort SUV" },
+              { img: "https://i.pinimg.com/736x/ab/c7/f1/abc7f1f8c4c1bf5e7fedd38f42cb831f.jpg", title: "Sportlicher Kombi" },
             ].map((item, i) => (
               <motion.div
                 key={i}
@@ -392,92 +392,125 @@ export default function Home() {
             description="Vertrauen Sie auf die Erfahrungen anderer – wir freuen uns über jedes positive Feedback."
           />
 
-          <div className="grid md:grid-cols-3 gap-8">
-            {testimonials.map((testimonial, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="bg-white p-8 rounded-2xl shadow-sm border border-border relative"
-              >
-                <div className="absolute -top-3 left-8">
-                  <div className="w-10 h-10 bg-[#c9a227] rounded-full flex items-center justify-center">
-                    <span className="text-white text-2xl font-serif">&ldquo;</span>
-                  </div>
-                </div>
+          <div className="grid lg:grid-cols-5 gap-10 items-center">
+            {/* Bild an der Seite */}
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="hidden lg:block lg:col-span-2"
+            >
+              <div className="relative">
+                <div className="absolute -inset-3 bg-[#c9a227]/20 rounded-3xl blur-2xl" />
+                <img
+                  src="https://baumgaertner-kessler.de/bilder/Impressionen3_861371.JPG"
+                  alt="Autohaus Impressionen"
+                  className="relative rounded-2xl w-full shadow-2xl object-cover aspect-[3/4]"
+                />
+              </div>
+            </motion.div>
 
-                <div className="flex gap-1 mb-4 pt-4">
-                  {[...Array(testimonial.rating)].map((_, i) => (
-                    <Star key={i} size={18} className="fill-[#c9a227] text-[#c9a227]" />
-                  ))}
-                </div>
-
-                <p className="text-muted-foreground mb-6 leading-relaxed">
-                  {testimonial.text}
-                </p>
-
-                <div className="flex items-center gap-3 pt-4 border-t border-border">
-                  <div className="w-12 h-12 rounded-full bg-[#1a1a2e] flex items-center justify-center">
-                    <span className="text-white font-semibold">
-                      {testimonial.name.split(" ").map(n => n[0]).join("")}
-                    </span>
+            {/* Rezensionen */}
+            <div className="lg:col-span-3 space-y-6">
+              {testimonials.map((testimonial, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
+                  className="bg-white p-7 rounded-2xl shadow-sm border border-border relative hover:shadow-md transition-shadow"
+                >
+                  <div className="absolute -top-3 left-7">
+                    <div className="w-9 h-9 bg-[#c9a227] rounded-full flex items-center justify-center">
+                      <span className="text-white text-xl font-serif">&ldquo;</span>
+                    </div>
                   </div>
-                  <div>
-                    <div className="font-semibold text-[#1a1a2e]">{testimonial.name}</div>
-                    <div className="text-sm text-muted-foreground">{testimonial.location}</div>
+
+                  <div className="flex items-start gap-5 pt-3">
+                    <div className="w-12 h-12 rounded-full bg-[#1a1a2e] flex items-center justify-center flex-shrink-0">
+                      <span className="text-white font-semibold">
+                        {testimonial.name.split(" ").map(n => n[0]).join("")}
+                      </span>
+                    </div>
+                    <div className="flex-1">
+                      <div className="flex items-center justify-between mb-2">
+                        <div>
+                          <div className="font-semibold text-[#1a1a2e]">{testimonial.name}</div>
+                          <div className="text-sm text-muted-foreground">{testimonial.location}</div>
+                        </div>
+                        <div className="flex gap-0.5">
+                          {[...Array(testimonial.rating)].map((_, i) => (
+                            <Star key={i} size={16} className="fill-[#c9a227] text-[#c9a227]" />
+                          ))}
+                        </div>
+                      </div>
+                      <p className="text-muted-foreground leading-relaxed">
+                        {testimonial.text}
+                      </p>
+                    </div>
                   </div>
-                </div>
-              </motion.div>
-            ))}
+                </motion.div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
       {/* Partner Section */}
-      <section className="py-24">
-        <div className="container mx-auto px-6">
+      <section className="py-24 bg-[#1a1a2e] relative overflow-hidden">
+        {/* Decorative */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-[#c9a227]/5 rounded-full blur-3xl" />
+
+        <div className="container mx-auto px-6 relative z-10">
           <SectionHeader
             badge="Partner"
             title="Unsere starken Partner"
             description="Für erstklassige Qualität und Service arbeiten wir mit kompetenten Partnern zusammen."
+            light
           />
 
-          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-10 max-w-5xl mx-auto">
             {[
               {
                 img: "https://baumgaertner-kessler.de/bilder/startseite/unsere-partner/partner-werkstatt-525113.jpg",
                 title: "AM Fahrzeugtechnik",
-                desc: "Unsere Partner-Werkstatt für alle Wartungs- und Reparaturarbeiten.",
+                desc: "Unsere Partner-Werkstatt für alle Wartungs- und Reparaturarbeiten. Professioneller Service und modernste Technik für Ihr Fahrzeug.",
                 tag: "Werkstatt",
               },
               {
                 img: "https://attachments.cms-genial.de/partners/77165e1756245c2d647ec96a72728657.jpg",
                 title: "GGG Garantie",
-                desc: "Unser Partner für zuverlässige Fahrzeuggarantien.",
+                desc: "Unser Partner für zuverlässige Fahrzeuggarantien. Maximale Sicherheit beim Gebrauchtwagenkauf.",
                 tag: "Garantie",
               },
             ].map((partner, i) => (
               <motion.div
                 key={i}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                className="bg-white rounded-2xl overflow-hidden shadow-sm border border-border hover:shadow-lg transition-shadow"
+                transition={{ delay: i * 0.15 }}
+                className="group bg-white/5 backdrop-blur-sm rounded-3xl border border-white/10 overflow-hidden hover:bg-white/10 hover:border-[#c9a227]/30 transition-all duration-500"
               >
-                <div className="p-8 flex flex-col items-center text-center">
-                  <span className="px-3 py-1 bg-[#c9a227]/10 text-[#c9a227] text-xs font-semibold rounded-full mb-6">
-                    {partner.tag}
-                  </span>
+                {/* Logo Bereich */}
+                <div className="p-10 flex items-center justify-center bg-white rounded-t-3xl">
                   <img
                     src={partner.img}
                     alt={partner.title}
-                    className="w-32 h-32 object-contain mb-6"
+                    className="h-40 w-auto object-contain group-hover:scale-105 transition-transform duration-500"
                   />
-                  <h3 className="text-xl font-bold text-[#1a1a2e] mb-3">{partner.title}</h3>
-                  <p className="text-muted-foreground">{partner.desc}</p>
+                </div>
+
+                {/* Info Bereich */}
+                <div className="p-8">
+                  <span className="inline-block px-3 py-1 bg-[#c9a227]/20 text-[#c9a227] text-xs font-semibold rounded-full mb-4">
+                    {partner.tag}
+                  </span>
+                  <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-[#c9a227] transition-colors">
+                    {partner.title}
+                  </h3>
+                  <p className="text-white/60 leading-relaxed">{partner.desc}</p>
                 </div>
               </motion.div>
             ))}
